@@ -3,10 +3,6 @@
 
 	<% if f.object.new_record? %>
 	  <%= f.file_field :image %>
-
-		<% [:width, :height].each do |attribute| %>
-			<%= f.text_field attribute, :value => banner.send(attribute), :class => "field_#{attribute}" %>
-		<% end %>  
 	<% end %>
 
 	<% unless f.object.new_record? %>

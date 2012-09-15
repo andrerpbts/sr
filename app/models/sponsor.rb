@@ -1,14 +1,13 @@
 class Sponsor < ActiveRecord::Base
   belongs_to :banner
 
-  attr_accessible  :width, :height, :url, :image
+  attr_accessible  :url, :image
 
-  attr_accessor :width, :height
-  
+
   has_attached_file :image, 
                     :styles => lambda { |sponsor| 
                       {
-                         :thumb => "#{sponsor.instance.width}x#{sponsor.instance.height}#"
+                         :thumb => "#{sponsor.instance.banner && sponsor.instance.banner.width}x#{sponsor.instance.banner && sponsor.instance.banner.height}#"
                       }
                     }
 
@@ -17,6 +16,6 @@ class Sponsor < ActiveRecord::Base
   private
 
   def reprocess
-    self.image.reprocess!
-  end
+   	self.image.reprocess! if self.banner
+   end
 end

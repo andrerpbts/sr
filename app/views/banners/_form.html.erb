@@ -24,7 +24,7 @@
       <%= render "sponsor_fields", :f => builder %>
       <% if builder.object.new_record? %>
         <% for attribute in [:width, :height] %>
-          <%= i.hidden_field attribute, :value => @banner.send(attribute), :id => attribute %>
+          <%= builder.hidden_field attribute, :value => @banner.send(attribute), :id => attribute %>
         <% end %>  
       <% end %>
     <% end %> 

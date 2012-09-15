@@ -1,6 +1,17 @@
 <div class="field">
-  <%= f.label :image, "Imagem" %>
-  <%= f.file_field :image %>
-  <%= f.hidden_field :_destroy %>
-  <%= link_to "remove", '#', class: "remove_fields" %>
+	<%= f.label :image, "Imagem" %>
+
+	<% if f.object.new_record? %>
+	  <%= f.file_field :image %>
+
+		<% [:width, :height].each do |attribute| %>
+			<%= f.text_field attribute, :value => banner.send(attribute), :class => "field_#{attribute}" %>
+		<% end %>  
+	<% end %>
+
+	<% unless f.object.new_record? %>
+		<%= image_tag f.object.image.url(:thumb) %>
+	  <%= f.hidden_field :_destroy %>
+	  <%= link_to "remove", '#', class: "remove_fields" %>
+  <% end %>
 </div>

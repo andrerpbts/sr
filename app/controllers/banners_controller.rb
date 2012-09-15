@@ -28,7 +28,7 @@ class BannersController < ApplicationController
   # GET /banners/new.json
   def new
     @banner = Banner.new
-    #@banner.sponsors.build
+    @banner.sponsors.build
     
     respond_to do |format|
       format.html # new.html.erb
@@ -45,7 +45,6 @@ class BannersController < ApplicationController
   # POST /banners.json
   def create
     @banner = Banner.new(params[:banner])
-
     respond_to do |format|
       if @banner.save
         format.html { redirect_to @banner, notice: 'Banner was successfully created.' }

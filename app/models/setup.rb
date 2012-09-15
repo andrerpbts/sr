@@ -1,10 +1,12 @@
 class Setup < ActiveRecord::Base
   
-  def max_banner_image
+  attr_accessible :max_banner_image, :max_vehicle_image
+  
+  def load_banner_image
     Setup.first
   end
 
-  def max_vehicle_image
+  def load_vehicle_image
     Setup.first
   end
   

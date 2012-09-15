@@ -87,6 +87,6 @@ class BannersController < ApplicationController
   
 private  
   def load_banner_setup
-    @setup = Setup.new.max_banner_image
+    @setup = Setup.new.load_banner_image
   end
 end

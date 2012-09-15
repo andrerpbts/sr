@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  banner: MyString
+  type: 1
+  top: 1
+  left: 1
+  width: 1
+  height: MyString
+
+two:
+  banner: MyString
+  type: 1
+  top: 1
+  left: 1
+  width: 1
+  height: MyString

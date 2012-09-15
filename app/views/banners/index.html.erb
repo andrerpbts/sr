@@ -1,0 +1,34 @@
+<h1>Listing banners</h1>
+
+<table>
+  <tr>
+    <th>Banner</th>
+    <th>Category</th>
+    <th>Top</th>
+    <th>Left</th>
+    <th>Width</th>
+    <th>Height</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @banners.each do |banner| %>
+  <tr>
+    <td><%= banner.banner %></td>
+    <td><%= banner.category %></td>
+    <td><%= banner.top %></td>
+    <td><%= banner.left %></td>
+    <td><%= banner.width %></td>
+    <td><%= banner.height %></td>
+   
+    <td><%= link_to 'Show', banner %></td>
+    <td><%= link_to 'Edit', edit_banner_path(banner) %></td>
+    <td><%= link_to 'Destroy', banner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Banner', new_banner_path %>

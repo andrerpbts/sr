@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Banner:</b>
+  <%= @banner.banner %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @banner.category %>
+</p>
+
+<p>
+  <b>Top:</b>
+  <%= @banner.top %>
+</p>
+
+<p>
+  <b>Left:</b>
+  <%= @banner.left %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%= @banner.width %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%= @banner.height %>
+</p>
+
+<p>
+  <b>Image:</b><br />
+  	<% @banner.sponsors.each do |im| %>
+		<td><%= image_tag im.image.url(:thumb) %></td>
+  <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_banner_path(@banner) %> |
+<%= link_to 'Back', banners_path %>

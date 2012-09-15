@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  max_banner_image: 1
+  max_vehicle_image: 1
+
+two:
+  max_banner_image: 1
+  max_vehicle_image: 1

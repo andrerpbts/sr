@@ -1,0 +1,57 @@
+<%= form_for(@banner) do |f| %>
+  <% if @banner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@banner.errors.count, "error") %> prohibited this banner from being saved:</h2>
+
+      <ul>
+      <% @banner.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :banner %><br />
+    <%= f.text_field :banner %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.select(:category, Banner::BANNER_CATEGORIES.collect {|c| [c, Banner::BANNER_CATEGORIES.index(c)+1]}, {:prompt => '-'} ) %>
+  </div>
+  <div class="field">
+    <%= f.fields_for :sponsors do |builder| %>
+      <%= render "sponsor_fields", :f => builder %>
+      <% if builder.object.new_record? %>
+        <% for attribute in [:width, :height] %>
+          <%= i.hidden_field attribute, :value => @banner.send(attribute), :id => attribute %>
+        <% end %>  
+      <% end %>
+    <% end %> 
+    <%= link_to_add_fields "Add Sponsor", f, :sponsors %>
+  </div>
+  <div class="field">
+    <%= f.label :top %><br />
+    <%= f.text_field :top %>
+  </div>
+  <div class="field">
+    <%= f.label :left %><br />
+    <%= f.text_field :left %>
+  </div>
+  <div class="field">
+    <%= f.label :width %><br />
+    <%= f.text_field :width %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br />
+    <%= f.text_field :height %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<div class="field">
+  <%= form_for(@setup) do |s| %>
+    <%= s.hidden_field :max_banner_image %>
+  <% end %>
+</div>

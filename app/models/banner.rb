@@ -1,4 +1,5 @@
 class Banner < ActiveRecord::Base
+
   has_many :sponsors, :dependent => :destroy
   
   attr_accessible :banner, :height, :left, :top, :category, :width, :sponsors_attributes

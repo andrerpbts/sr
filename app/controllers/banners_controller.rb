@@ -28,7 +28,6 @@ class BannersController < ApplicationController
   # GET /banners/new.json
   def new
     @banner = Banner.new
-    @banner.sponsors.build
     
     respond_to do |format|
       format.html # new.html.erb
@@ -86,6 +85,6 @@ class BannersController < ApplicationController
   
 private  
   def load_banner_setup
-    @setup = Setup.new.load_banner_image
-  end
+    @setup = Setup.last || Setup.new(:max_banner_image  => 1)
+  end 
 end

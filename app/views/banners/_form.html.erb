@@ -23,7 +23,8 @@
     <%= f.fields_for :sponsors do |builder| %>
       <%= render "sponsor_fields", :f => builder, :banner => @banner %>
     <% end %> 
-    <%= f.link_to_add "Add Sponsor", :sponsors %>
+    <%= link_to_add_fields "Add Sponsor", f, :sponsors %>
+    <%= hidden_field_tag :max_banner_image, @setup.max_banner_image %>
   </div>
   <div class="field">
     <%= f.label :top %><br />
@@ -45,8 +46,3 @@
     <%= f.submit %>
   </div>
 <% end %>
-<div class="field">
-  <%= form_for(@setup) do |s| %>
-    <%= s.hidden_field :max_banner_image %>
-  <% end %>
-</div>

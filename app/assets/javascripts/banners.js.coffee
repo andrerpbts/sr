@@ -1,5 +1,5 @@
-jQuery ->
-  $('form').on 'click', '.remove_fields', (event) ->
+jQuery -> 
+ $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
     $(this).closest('div.field').hide()
     now_image_items   = $('input:file:visible').length
@@ -17,3 +17,9 @@ jQuery ->
     if(now_image_items >= max_banner_image)
       $(this).hide()
     event.preventDefault()
+
+	$('form').ready ->
+	  $('div.banner_custom').hide()
+	
+  $('#banner_category').change ->
+    if $(':selected',this).val() != "P1" then $('div.banner_custom').hide() else $('div.banner_custom').show()

@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :category %><br />
-    <%= f.select :category, Banner::BANNER_CATEGORIES.map {|key, value| [ key, value] } %>
+    <%= f.select(:category, Banner::BANNER_CATEGORIES.collect {|c| [c, Banner::BANNER_CATEGORIES.index(c)+1]}, {:prompt => '-'} ) %>
   </div>
   <div class="field">
     <%= f.fields_for :sponsors do |builder| %>
@@ -26,23 +26,21 @@
     <%= link_to_add_fields "Add Sponsor", f, :sponsors %>
     <%= hidden_field_tag :max_banner_image, @setup.max_banner_image %>
   </div>
-  <div class="banner_custom">
-    <div class="field">
-      <%= f.label :top %><br />
-      <%= f.text_field :top %>
-    </div>
-    <div class="field">
-      <%= f.label :left %><br />
-      <%= f.text_field :left %>
-    </div>
-    <div class="field">
-      <%= f.label :width %><br />
-      <%= f.text_field :width %>
-    </div>
-    <div class="field">
-      <%= f.label :height %><br />
-      <%= f.text_field :height %>
-    </div>
+  <div class="field">
+    <%= f.label :top %><br />
+    <%= f.text_field :top %>
+  </div>
+  <div class="field">
+    <%= f.label :left %><br />
+    <%= f.text_field :left %>
+  </div>
+  <div class="field">
+    <%= f.label :width %><br />
+    <%= f.text_field :width %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br />
+    <%= f.text_field :height %>
   </div>
   <div class="actions">
     <%= f.submit %>

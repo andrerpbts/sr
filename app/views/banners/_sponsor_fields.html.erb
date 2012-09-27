@@ -1,14 +1,20 @@
 <div class="field">
-	<%= f.label :image, "Imagem" %>
+	<%= f.label :image, "Imagem" %><br />
 
 	<% if f.object.new_record? %>
 	  <%= f.file_field :image %>
 	<% end %>
 
 	<% unless f.object.new_record? %>
-		<%= image_tag f.object.image.url(:thumb) %>
-	  <%= f.hidden_field :_destroy %>
+	    <% unless @banner.is_swf?(f.object.image.content_type) %>
+  		  <%= image_tag f.object.image.url(:original) %>
+      <% else %>
+        <%= swf_tag f.object.image.url(:original),
+        :width  => f.object.which_size(@banner.category)[:w],
+        :height => f.object.which_size(@banner.category)[:h]
+        %>
+      <% end %>
   <% end %>
-  
+  <%= f.hidden_field :_destroy %>
   <%= link_to "remove", '#', class: "remove_fields" %>
 </div>

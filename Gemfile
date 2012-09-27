@@ -7,7 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 gem "paperclip", "~> 3.1.4"
-#gem "awesome_nested_fields", "~> 0.6.0"
+gem "swf_fu", "~> 2.0"
 gem "nested_form", "~> 0.2.3"
 
 # Gems used only for assets and not required

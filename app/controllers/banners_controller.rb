@@ -1,6 +1,6 @@
 class BannersController < ApplicationController
   
-  before_filter :load_banner_setup, :only => [:new, :edit]
+  before_filter :load_banner_setup, :only => [:new, :create, :edit, :update]
   
   # GET /banners
   # GET /banners.json

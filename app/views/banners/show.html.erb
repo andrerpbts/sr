@@ -10,31 +10,38 @@
   <%= @banner.category %>
 </p>
 
-<p>
-  <b>Top:</b>
-  <%= @banner.top %>
-</p>
+<% if @banner.personalized_size? %>
+  <p>
+    <b>Top:</b>
+    <%= @banner.top %>
+  </p>
 
-<p>
-  <b>Left:</b>
-  <%= @banner.left %>
-</p>
+  <p>
+    <b>Left:</b>
+    <%= @banner.left %>
+  </p>
 
-<p>
-  <b>Width:</b>
-  <%= @banner.width %>
-</p>
+  <p>
+    <b>Width:</b>
+    <%= @banner.width %>
+  </p>
 
-<p>
-  <b>Height:</b>
-  <%= @banner.height %>
-</p>
-
+  <p>
+    <b>Height:</b>
+    <%= @banner.height %>
+  </p>
+<% end %>
 <p>
   <b>Image:</b><br />
-  	<% @banner.sponsors.each do |im| %>
-		<td><%= image_tag im.image.url(:thumb) %></td>
-  <% end %>
+  <% @banner.sponsors.each do |im| %>
+  <td>
+  <% unless @banner.is_swf?(im.image.content_type) %>
+    <%= image_tag  im.image.url(:original)%>
+  <% else %>
+	  <%= swf_tag im.image.url(:original),:width => im.which_size(@banner.category)[:w],:height => im.which_size(@banner.category)[:h]%>
+	<% end %>
+	</td>
+	<% end %>
 </p>
 
 

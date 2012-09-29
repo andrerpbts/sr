@@ -15,9 +15,8 @@ class Sponsor < ActiveRecord::Base
     :original => {
       :geometry => "#{sponsor.instance.banner && sponsor.instance.banner.width}x#{sponsor.instance.banner && sponsor.instance.banner.height}!"}}}
    
-  before_post_process :is_image?
   after_save  :reprocess
-
+  
   def which_size(category)
       case category
         when "B1"
@@ -45,10 +44,6 @@ class Sponsor < ActiveRecord::Base
   
 private
 
-  def is_image?
-    !(self.image.content_type =~ /^image/).nil?
-  end
-   
   def reprocess
     sizes = which_size(self.banner.category)
     self.banner.height = sizes[:h]

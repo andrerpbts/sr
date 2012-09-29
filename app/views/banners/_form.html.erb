@@ -20,7 +20,7 @@
     <%= f.select :category, Banner::BANNER_CATEGORIES.map {|key, value| [ key, value] } %>
   </div>
   <div class="field">
-    <%= f.fields_for :sponsors do |builder| %>
+  	<%= f.fields_for :sponsors do |builder| %>
       <%= render "sponsor_fields", :f => builder, :banner => @banner %>
     <% end %> 
     <%= link_to_add_fields "Add Sponsor", f, :sponsors %>

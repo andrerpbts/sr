@@ -9,6 +9,7 @@ class Banner < ActiveRecord::Base
   validates :banner, :presence => true, :uniqueness => true
   validates :sponsors, :presence => true
   validates :top, :left, :height, :width, :presence => true, :numericality => { :only_integer => true }, :if => :personalized_size?
+  validate :has_beween_1_and_x_pictures
     
   BANNER_CATEGORIES = {
     "(B1) Superior - 720x100"       => "B1",
@@ -20,6 +21,12 @@ class Banner < ActiveRecord::Base
     "(B7) Inferior - 200x80"        => "B7",
     "(B8) Inferior - 200x80"        => "B8",
     "(P1) Personalizado - ???x???"  => "P1"}
+  
+    def has_beween_1_and_x_pictures
+      errors.add(:sponsor, "size - #{sponsors.count}") if sponsors.count < 1
+      errors.add(:sponsor, "size + #{sponsors.count}") if sponsors.count > 3
+      #errors.add(:sponsor, "present") if sponsors.present?
+    end
   
     def personalized_size?
       self.category == "P1"

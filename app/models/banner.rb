@@ -23,9 +23,12 @@ class Banner < ActiveRecord::Base
     "(P1) Personalizado - ???x???"  => "P1"}
   
     def has_beween_1_and_x_pictures
-      errors.add(:sponsor, "size - #{sponsors.count}") if sponsors.count < 1
-      errors.add(:sponsor, "size + #{sponsors.count}") if sponsors.count > 3
-      #errors.add(:sponsor, "present") if sponsors.present?
+      undestroyed_sponsors_count = 0
+
+      self.sponsors.each { |s| undestroyed_sponsors_count += 1 unless s.marked_for_destruction? }
+
+      errors.add(:sponsor, "size - #{undestroyed_sponsors_count}") if undestroyed_sponsors_count < 1
+      errors.add(:sponsor, "size + #{undestroyed_sponsors_count}") if undestroyed_sponsors_count > 3
     end
   
     def personalized_size?
